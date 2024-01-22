@@ -12,12 +12,17 @@ export default function App() {
     setModalIsVisible(true);
   }
 
+  function endAddGoalHandler(){
+    setModalIsVisible(false)
+  }
+
   function addGoalHandler(enteredGoalText) {
     //stateupdate
     setLiveGoals( currentLiveGoals => [
       ...currentLiveGoals, 
      { text: enteredGoalText, id: Math.random().toString()},
-      ]);
+    ]);
+      endAddGoalHandler();
   }
   // give function as prop to use it in the component GoalItem.js
   function deleteGoalHandler(id){
@@ -30,10 +35,16 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <Button title='Add New Goal' color="#f2ef" onPress={startAddGoalHandler}/>
-      {/* {modalIsVisible && <GoalInput onAddGoal={addGoalHandler}/>} */}
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
-
+      <Button 
+        title='Add New Goal' 
+        color="#f2ef" 
+        onPress={startAddGoalHandler}
+        />
+      <GoalInput 
+        visible={modalIsVisible} 
+        onAddGoal={addGoalHandler} 
+        onCancel={endAddGoalHandler}
+      />
       <View style={styles.goalsContainer}>
         <FlatList data={liveGoals} renderItem={(itemData) => { //to be able to scroll performance optimized
           return (

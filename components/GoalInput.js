@@ -20,13 +20,20 @@ function GoalInput(props){
                     style={styles.textInput} 
                     placeholder="main goal" 
                     onChangeText={goalInputHandler}
-                    value={enteredGoalText}/>
+                    value={enteredGoalText}
+                    />
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
-                            <Button title="Add Goal" onPress={addGoalHandler}/>
+                            <Button 
+                                title="Add Goal" 
+                                onPress={addGoalHandler}
+                                />
                         </View>
                         <View style={styles.button}>
-                            <Button title="Cancel"/>
+                            <Button 
+                                title="Cancel" 
+                                onPress={props.onCancel}
+                                />
                         </View>
                     </View>
             </View>
@@ -34,6 +41,7 @@ function GoalInput(props){
 
     )
 }
+
 export default GoalInput;
 
 const styles = StyleSheet.create({
